@@ -1,0 +1,120 @@
+*{
+    padding: 0px;
+}
+
+.App {
+    background-image: url("src/images/back.jpg");
+    background-repeat: no-repeat;
+    background-position-y: 3rem;
+    background-size: 100% auto;
+    padding-bottom: 6.1rem;
+}
+
+.header {
+    background: linear-gradient(90deg, #BE3724 0%, #361B21 100%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: .7rem 1rem 1rem .7rem;
+}
+
+.header > h2 {
+    color: white;
+    text-align: center;
+    letter-spacing: 6px;
+    font-weight: 600px;
+    font-size: 20px;
+}
+
+
+.dropdown {
+    padding: 5rem;
+}
+
+
+.drop-down-container {
+  margin: 0 auto;
+  width: 25rem;
+}
+
+
+.drop-down-header {
+  height: 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  padding: .6em 1.2em;
+  box-shadow: 0px 5px 9px 2px rgba(0, 0, 0, 0.24);
+  font-weight: 500;
+  font-size: 1.3rem;
+  color: #fff;
+  background: #361B21;
+  line-height: 2.4rem;
+  border-radius: 2px 2px 0px 0px;
+  cursor: pointer;
+}
+
+.drop-down-header > p {
+    margin: 0;
+}
+
+.drop-down-list-container {
+    
+}
+
+ul {
+  background-color: transparent;
+  margin: 0em 0em;
+  padding: 0px;
+  padding-top: 0px;
+  color: rgba(54, 27, 33, 0.72);
+  font-size: 1.3rem;
+  font-weight: 600;
+  
+}
+
+li {
+  background: #F8C6A5;
+  list-style: none;
+  margin: 0px;
+  border-top:1px solid rgba(0, 0, 0, 0.25);
+  padding: .9em 1.2em;
+  box-shadow: 0px 5px 9px 2px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+}
+
+li:last-child{
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 1.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 2rem;
+}
+
+.form > input {
+    color:#3b2c2f;
+    font-family: nunito;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.62) 0%, rgba(255, 255, 255, 0) 100%);
+}
+
+.form > button {
+    font-family: nunito;
+    background: linear-gradient(89.92deg, #BE3724 1.54%, #361B21 99.93%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50px;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    font-size: larger;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    cursor: pointer;
+}
+
+
