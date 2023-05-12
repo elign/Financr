@@ -1,10 +1,15 @@
 import Image from "next/image";
-import {useState} from 'react'
-import { HomeIcon, Expense, Sent, Received, Assets } from '../icons.js'
+import { useState } from 'react'
+import { HomeIcon, Expense, Sent, Received, Assets, Liability, Score } from '../icons.js'
 import { CircularButton } from "@/components/Button.tsx";
 export default function Default() {
 
     const [showTooltip, setShowTooltip] = useState(false);
+    const [selectedButton, setSelectedButton] = useState<number | null>(null);
+
+    function onButtonClick(id : number) {
+        setSelectedButton(id);
+    }
 
     return (
         <>
@@ -15,7 +20,11 @@ export default function Default() {
                     <h2 className="text-4xl font-semibold pt-1">₹ <span>10,000</span></h2>
                 </div>
                 <div className="pt-10 flex flex-wrap justify-center gap-10">
-                    <CircularButton option="Assets"/>
+                    <CircularButton id = {1} selected = {selectedButton === 1} option="Assets" icon=<Assets /> onButtonClick={onButtonClick} />
+                    <CircularButton id = {2} selected = {selectedButton === 2} option="Received" icon=<Received /> onButtonClick={onButtonClick} />
+                    <CircularButton id = {3} selected = {selectedButton === 3} option="Expenses" icon=<Expense /> onButtonClick={onButtonClick} />
+                    <CircularButton id = {4} selected = {selectedButton === 4} option="Liabilities" icon=<Liability /> onButtonClick={onButtonClick} />
+                    <CircularButton id = {5} selected = {selectedButton === 5} option="Score" icon=<Score /> onButtonClick={onButtonClick} />
                 </div>
                 <div className="pt-10">
                     <div className="flex justify-between drop-shadow-xl py-5 px-5 rounded-md my-6 bg-tertiary">
