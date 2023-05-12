@@ -1,6 +1,5 @@
 import Image from "next/image";
-import { FcGoogle } from 'react-icons/fa';
-
+import {GoogleIcon, RightArrow} from '../icons.js'
 export default function Default() {
   return (
     <>
@@ -15,18 +14,19 @@ export default function Default() {
           Manage Your Finances like a Pro
         </h1>
         <div className="flex gap-5 font-medium pb-6 border-b-4">
-          <span> 🡢 Liabilities </span>
-          <span> 🡢 Necessities </span>
-          <span> 🡢 Assets </span>
+          <span className="flex gap-1 items-center"> <RightArrow /> <>Liabilities</> </span>
+          <span className="flex gap-1 items-center"> <RightArrow /> Necessities </span>
+          <span className="flex gap-1 items-center"> <RightArrow /> Assets </span>
         </div>
         <span className="bg-gray-200 px-4 py-2 rounded-full">
           Concept derived from 'Rich Dad, Poor Dad'
         </span>
         <button className="bg-[#E8F44A] flex justify-center gap-4 center w-60 mt-10 py-4 rounded-lg">
-          <FcGoogle />
+          <GoogleIcon />
           <span className="font-semibold">Login or Sign Up</span>
         </button>
       </div>
     </>
   );
 }
+
