@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Expense, Received, Assets, Liability, Score } from '../icons.js'
-import { CircularButton } from "@/components/Button.tsx";
-import ExpenseCard from "@/components/ExpenseCard.tsx";
-import MenuBar from "@/components/MenuBar.tsx"
-import Layout from '@/components/layout.tsx';
+import { CircularButton } from "@/components/Button";
+import ExpenseCard from "@/components/ExpenseCard";
+import MenuBar from "@/components/MenuBar"
+import Layout from '@/components/layout';
 export default function Default() {
 
     const [selectedButton, setSelectedButton] = useState<number | null>(null);
