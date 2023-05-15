@@ -1,6 +1,6 @@
 export const user = {
     march23: {
-        "Received": [
+        Received: [
             {
                 amount: 2000,
                 name: "website dev work",
@@ -23,7 +23,7 @@ export const user = {
             },
         ],
 
-        "Assets": [
+        Assets: [
             {
                 amount: 2000,
                 name: "business",
@@ -35,7 +35,7 @@ export const user = {
                 attribute: "future"
             },
         ],
-        "Liabilities": [
+        Liabilities: [
             {
                 amount: 2000,
                 name: "party",
@@ -58,7 +58,7 @@ export const user = {
             },
         ],
 
-        "Expenses": [
+        Expenses: [
             {
                 amount: 20000,
                 name: "home",
