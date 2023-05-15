@@ -11,7 +11,7 @@ const ExpenseCard: React.FC<ExpenseCardProps> = ({ name, amount, attribute }) =>
     <div className="flex justify-between drop-shadow-xl py-5 px-8 rounded-2xl bg-tertiary w-96">
       <div>
         <p className='text-lg'>{name.charAt(0).toUpperCase() + name.slice(1)}</p>
-        <p className="text-sm text-gray-600 mt-2">{attribute}</p>
+        {attribute && <p className="text-sm text-gray-600 mt-2">{attribute}</p>}
       </div>
       <div>
         <p

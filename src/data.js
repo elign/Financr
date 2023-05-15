@@ -1,6 +1,6 @@
 export const user = {
     march23: {
-        Received: [
+        "Received": [
             {
                 amount: 2000,
                 name: "website dev work",
@@ -23,9 +23,9 @@ export const user = {
             },
         ],
 
-        Assets: [
+        "Assets": [
             {
-                amount: 2000,
+                amount: -2000,
                 name: "business",
                 attribute: "self"
             },
@@ -35,7 +35,7 @@ export const user = {
                 attribute: "future"
             },
         ],
-        Liabilities: [
+        "Liabilities": [
             {
                 amount: 2000,
                 name: "party",
@@ -58,35 +58,35 @@ export const user = {
             },
         ],
 
-        Expenses: [
+        "Expenses": [
             {
-                amount: 20000,
+                amount: -20000,
                 name: "home",
                 attribute: "general"
             },
             {
-                amount: 4000,
+                amount: -4000,
                 name: "room rent",
                 attribute: "general"
             },
             {
-                amount: 20000,
-                name: "home",
+                amount: -1000,
+                name: "travel to hometown",
                 attribute: "unexpected"
             },
             {
-                amount: 4000,
-                name: "room rent",
+                amount: -2200,
+                name: "medical",
                 attribute: "unexpected"
             },
             {
-                amount: 20000,
-                name: "home",
+                amount: -2000,
+                name: "mumma",
                 attribute: "gifts"
             },
             {
-                amount: 4000,
-                name: "room rent",
+                amount: -4000,
+                name: "Bahna",
                 attribute: "gifts"
             },
         ]
