@@ -1,5 +1,6 @@
 import Image from "next/image";
 import {GoogleIcon, RightArrow} from '../icons.js'
+
 export default function Default() {
   return (
     <>
