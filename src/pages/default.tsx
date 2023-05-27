@@ -1,8 +1,30 @@
+'use client';
+import { useRouter } from 'next/navigation';
+import {useEffect} from 'react'
 import Image from "next/image";
 import {GoogleIcon, RightArrow} from '../icons.js'
-import { signInWithGoogle } from "@/firebaseConfig";
+import { signInWithGoogle, auth, db } from "@/firebaseConfig";
+import { onAuthStateChanged, getAuth, signOut } from 'firebase/auth'
+import { getDoc, setDoc } from "firebase/firestore"
+import {
+  doc,
+} from "firebase/firestore";
+
 
 export default function Default() {
+
+  const router = useRouter();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, async(user) => {
+      if(user) {
+        router.push('/dashboard');        
+      }
+    })
+
+  }, [router])
+
+
   return (
     <>
       <div className="flex flex-col items-center my-auto h-screen justify-center p-4 gap-6">
@@ -21,7 +43,7 @@ export default function Default() {
           <span className="flex gap-1 items-center"> <RightArrow /> Assets </span>
         </div>
         <span className="bg-gray-200 px-4 py-2 rounded-full">
-          `Concept derived from 'Rich Dad, Poor Dad'`
+          {`Concept derived from 'Rich Dad, Poor Dad'`}
         </span>
         <button onClick={signInWithGoogle} className="bg-[#E8F44A] flex justify-center gap-4 center w-60 mt-10 py-4 rounded-lg">
           <GoogleIcon />
