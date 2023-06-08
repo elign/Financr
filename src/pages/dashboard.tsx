@@ -1,13 +1,23 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Expense, Received, Assets, Liability, Score } from '../icons';
 import { CircularButton } from '@/components/Button';
 import ExpenseCard from '@/components/ExpenseCard';
 import Layout from '@/components/layout';
 import { user } from '../data';
+import {useAtom} from 'jotai';
+import { dataAtom } from '.';
+import { fetchData } from "@/firebaseConfig";
 
 export default function Dashboard(): JSX.Element {
   const [selectedButton, setSelectedButton] = useState<string>('');
+  const [data, setData] = useAtom(dataAtom);
+  console.log(data);
+  useEffect(() => {
+    setData(fetchData());
+  }, []);
+
+  
 
   function onButtonClick(option: string): void {
     setSelectedButton(option);

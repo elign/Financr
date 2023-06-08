@@ -5,14 +5,15 @@ import {
   collection,
   addDoc,
   setDoc,
-  doc,
   where,
+  doc,
   query,
   getDocs,
   updateDoc,
+  getDoc,
 } from "firebase/firestore";
 
-import firestore from 'firebase/firestore'
+import firestore from "firebase/firestore";
 
 import {
   GoogleAuthProvider,
@@ -55,7 +56,9 @@ const signInWithGoogle = async () => {
 
       //to create a document with the name of year and month
       const currentDate = new Date();
-      const month = currentDate.toLocaleString('en-US', { month: 'long' }).toLowerCase();
+      const month = currentDate
+        .toLocaleString("en-US", { month: "long" })
+        .toLowerCase();
       const year = currentDate.getFullYear();
       const monthYear = month + year;
 
@@ -63,108 +66,110 @@ const signInWithGoogle = async () => {
       const dataCollectionRef = collection(db, "data");
 
       // Create a document based on the email within the "data" collection
-      const emailDocRef = doc(dataCollectionRef, user.email);
+      const emailDocRef: firestore.DocumentReference<firestore.DocumentData> =
+        doc(dataCollectionRef, user.email);
 
       // Create a subcollection based on the month and year
-      const monthYearSubcollectionRef = collection(emailDocRef, monthYear);
+      const monthYearSubcollectionRef: firestore.CollectionReference<firestore.DocumentData> =
+        collection(emailDocRef, monthYear);
 
       // Create a document named "data" within the subcollection
-      const dataDocRef = doc(monthYearSubcollectionRef, "data");
+      const dataDocRef: firestore.DocumentReference<firestore.DocumentData> =
+        doc(monthYearSubcollectionRef, "data");
 
       // Set the document's data with the "assets" property
       await setDoc(dataDocRef, {
-        "Received": [
-            {
-                amount: 2000,
-                name: "website dev work",
-                attribute: "active"
-            },
-            {
-                amount: 4000,
-                name: "teaching students",
-                attribute: "active"
-            },
-            {
-                amount: 2000,
-                name: "room rent",
-                attribute: "passive"
-            },
-            {
-                amount: 4000,
-                name: "stocks sold",
-                attribute: "passive"
-            },
+        Received: [
+          {
+            amount: 2000,
+            name: "website dev work",
+            attribute: "active",
+          },
+          {
+            amount: 4000,
+            name: "teaching students",
+            attribute: "active",
+          },
+          {
+            amount: 2000,
+            name: "room rent",
+            attribute: "passive",
+          },
+          {
+            amount: 4000,
+            name: "stocks sold",
+            attribute: "passive",
+          },
         ],
 
-        "Assets": [
-            {
-                amount: -2000,
-                name: "business",
-                attribute: "self"
-            },
-            {
-                amount: 5000,
-                name: "Tata stocks",
-                attribute: "future"
-            },
+        Assets: [
+          {
+            amount: -2000,
+            name: "business",
+            attribute: "self",
+          },
+          {
+            amount: 5000,
+            name: "Tata stocks",
+            attribute: "future",
+          },
         ],
-        "Liabilities": [
-            {
-                amount: 2000,
-                name: "party",
-                attribute: "luxury"
-            },
-            {
-                amount: 4000,
-                name: "going out",
-                attribute: "luxury"
-            },
-            {
-                amount: 20000,
-                name: "home",
-                attribute: "responsibility"
-            },
-            {
-                amount: 4000,
-                name: "room rent",
-                attribute: "responsibility"
-            },
+        Liabilities: [
+          {
+            amount: 2000,
+            name: "party",
+            attribute: "luxury",
+          },
+          {
+            amount: 4000,
+            name: "going out",
+            attribute: "luxury",
+          },
+          {
+            amount: 20000,
+            name: "home",
+            attribute: "responsibility",
+          },
+          {
+            amount: 4000,
+            name: "room rent",
+            attribute: "responsibility",
+          },
         ],
 
-        "Expenses": [
-            {
-                amount: -20000,
-                name: "home",
-                attribute: "general"
-            },
-            {
-                amount: -4000,
-                name: "room rent",
-                attribute: "general"
-            },
-            {
-                amount: -1000,
-                name: "travel to hometown",
-                attribute: "unexpected"
-            },
-            {
-                amount: -2200,
-                name: "medical",
-                attribute: "unexpected"
-            },
-            {
-                amount: -2000,
-                name: "mumma",
-                attribute: "gifts"
-            },
-            {
-                amount: -4000,
-                name: "Bahna",
-                attribute: "gifts"
-            },
-        ]
-
-    });
+        Expenses: [
+          {
+            amount: -20000,
+            name: "home",
+            attribute: "general",
+          },
+          {
+            amount: -4000,
+            name: "room rent",
+            attribute: "general",
+          },
+          {
+            amount: -1000,
+            name: "travel to hometown",
+            attribute: "unexpected",
+          },
+          {
+            amount: -2200,
+            name: "medical",
+            attribute: "unexpected",
+          },
+          {
+            amount: -2000,
+            name: "mumma",
+            attribute: "gifts",
+          },
+          {
+            amount: -4000,
+            name: "Bahna",
+            attribute: "gifts",
+          },
+        ],
+      });
 
       // // Update the "assets" property with additional values
       // await updateDoc(dataDocRef, {
@@ -190,37 +195,39 @@ const logout = () => {
   signOut(getAuth());
 };
 
-const fetchData = () => {
-const currentDate = new Date();
-const currentMonth = currentDate.toLocaleString('en-US', { month: 'long' }).toLowerCase() + currentDate.getFullYear();
-const email = 'example@gmail.com'; // Replace with the desired email
+const fetchData = async () : Promise<firestore.DocumentData | null > => {
+  const user = auth.currentUser;
+  console.log(user)
+  if (user) {
+    const currentDate = new Date();
+    const currentMonth =
+      currentDate.toLocaleString("en-US", { month: "long" }).toLowerCase() +
+      currentDate.getFullYear();
+    try {
+      // Get the currently logged-in user
+      // Get the email of the current user
+      const email = user?.email == null ? "" : user.email;
 
-// Fetch the data from Firestore
-firestore
-  .collection(db,'data')
-  .doc(email)
-  .collection(currentMonth)
-  .doc('data')
-  .get()
-  .then((docSnapshot : any) => {
-    if (docSnapshot.exists) {
-      const data = docSnapshot.data();
-      if (data) {
-        const assets = data.assets;
-        console.log(assets);
+      // Reference to the document in the 'data' collection with the user's email
+      const colRef = collection(db, "data");
+      const docRef = doc(colRef, email);
+      const collectionRef = collection(docRef, currentMonth);
+      const documentRef = doc(collectionRef, "data");
+      const data = await getDoc(documentRef);
+      // Fetch the subcollection 'month' and document 'data'
+
+      if (data.exists()) {
+        console.log("Document data:", data.data());
+        return data.data();
+      } else {
+        // docSnap.data() will be undefined in this case
+        console.log("No such document!");
       }
-    } else {
-      console.log('Document does not exist.');
+    } catch (error) {
+      console.log("Error fetching data:", error);
     }
-  })
-  .catch((error : any) => {
-    console.log('Error getting document:', error);
-  });
-}
-
-export {
-  auth,
-  db,
-  signInWithGoogle,
-  logout,
+  }
+  return null;
 };
+
+export { auth, db, signInWithGoogle, logout, fetchData };
