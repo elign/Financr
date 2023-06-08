@@ -1,20 +1,35 @@
-import { useState } from 'react';
-import Image from 'next/image';
-import { Expense, Received, Assets, Liability, Score } from '../icons';
-import { CircularButton } from '@/components/Button';
-import ExpenseCard from '@/components/ExpenseCard';
-import Layout from '@/components/layout';
-import { user } from '../data';
+import { useState } from "react";
+import Image from "next/image";
+import { Expense, Received, Assets, Liability, Score } from "../icons";
+import { CircularButton } from "@/components/Button";
+import ExpenseCard from "@/components/ExpenseCard";
+import Layout from "@/components/layout";
+import { user } from "../data";
 
 export default function Dashboard(): JSX.Element {
-  const [selectedButton, setSelectedButton] = useState<string>('');
+<<<<<<< Updated upstream
+  const [selectedButton, setSelectedButton] = useState<string>('received');
+=======
+  const [selectedButton, setSelectedButton] = useState<string>("");
+>>>>>>> Stashed changes
 
   function onButtonClick(option: string): void {
     setSelectedButton(option);
   }
 
-  const filteredData: { amount: number; name: string; attribute: string }[] = user.march23[selectedButton] || [];
+<<<<<<< Updated upstream
+  type UserData = {
+    [key: string]: { amount: number; name: string; attribute: string }[];
+  };
+  
+  const filteredData: { amount: number; name: string; attribute: string }[] =
+    (user?.march23 as UserData)?.[selectedButton] || [];
+    
+=======
+  const filteredData: { amount: number; name: string; attribute: string }[] =
+    user.march23[selectedButton] || [];
 
+>>>>>>> Stashed changes
   return (
     <Layout>
       <div className="p-6 flex flex-col pb-28">
@@ -27,35 +42,35 @@ export default function Dashboard(): JSX.Element {
         <div className="pt-10 flex flex-wrap justify-evenly gap-10">
           <CircularButton
             id={1}
-            selected={selectedButton === 'Assets'}
+            selected={selectedButton === "Assets"}
             option="Assets"
             icon={<Assets />}
             onButtonClick={onButtonClick}
           />
           <CircularButton
             id={2}
-            selected={selectedButton === 'Received'}
+            selected={selectedButton === "Received"}
             option="Received"
             icon={<Received />}
             onButtonClick={onButtonClick}
           />
           <CircularButton
             id={3}
-            selected={selectedButton === 'Expenses'}
+            selected={selectedButton === "Expenses"}
             option="Expenses"
             icon={<Expense />}
             onButtonClick={onButtonClick}
           />
           <CircularButton
             id={4}
-            selected={selectedButton === 'Liabilities'}
+            selected={selectedButton === "Liabilities"}
             option="Liabilities"
             icon={<Liability />}
             onButtonClick={onButtonClick}
           />
           <CircularButton
             id={5}
-            selected={selectedButton === 'Score'}
+            selected={selectedButton === "Score"}
             option="Score"
             icon={<Score />}
             onButtonClick={onButtonClick}
@@ -72,7 +87,12 @@ export default function Dashboard(): JSX.Element {
               />
             ))
           ) : (
-            <Image src="/images/nothing.jpeg" width={500} height={500} alt="Picture of the author" />
+            <Image
+              src="/images/nothing.jpeg"
+              width={500}
+              height={500}
+              alt="Picture of the author"
+            />
           )}
         </div>
       </div>
